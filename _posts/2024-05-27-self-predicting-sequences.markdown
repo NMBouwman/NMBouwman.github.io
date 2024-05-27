@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Self-predicting sequences"
-date:   2024-05-23 16:47:49 +0200
+date:   2024-05-27 16:47:49 +0200
 categories: blogs
 mathjax: true
 ---
 {% include script.html %}
 
-
+<p style="text-align: center;"><i>Is there a number sequence that predicts at the \( n \)-th term in how many steps it will show an \( n \)?</i></p>
 
 <h3>Constructing the sequence</h3>
 Let's start with an empty table:
@@ -24,7 +24,7 @@ $$
 
 &nbsp;
 
-We will first look at \\( Q_0 \\). Recall the idea for the sequence: \\( Q_n \\) describes after how many steps we see the number \\( n \\) in the sequence. So after \\( Q_0 \\) steps - at some position further on in the table - we should find a \\( 0 \\). Let's think about this for a second; if \\( Q_n=0 \\) anywhere further up in the sequence, it tells us that after <i>zero</i> steps we should see the number \\( n \\). But taking zero steps means staying in the same spot! We cannot have both a \\( 0 \\) and an \\( n \\) in the same position. Therefore \\( n \\) has no choice but to equal \\( 0 \\). Turning the argument around, \\( Q_0 \\) needs to be \\( 0 \\) because if it were anything else, it would place an impossible \\( 0 \\) somewhere else in the table!
+We will first look at \\( Q_0 \\). Recall the idea for the sequence: \\( Q_n \\) describes after how many steps we see the number \\( n \\) in the sequence. So after \\( Q_0 \\) steps, we should find a \\( 0 \\). Let's think about this for a second; if \\( Q_n=0 \\) anywhere further up in the sequence, it tells us that after <i>zero</i> steps we should see the number \\( n \\). But taking zero steps means staying in the same spot! We cannot have both a \\( 0 \\) and an \\( n \\) in the same position. Therefore \\( n \\) has no choice but to equal \\( 0 \\). Turning the argument around, \\( Q_0 \\) needs to be \\( 0 \\) because if it were anything else, it would place an impossible \\( 0 \\) somewhere else in the table!
 
 If this line of reasoning is at all confusing, please feel invited to place any number at \\( Q_0 \\) and follow the gimmick of the sequence that after \\( Q_n \\) steps we find the number \\( n \\).
 
@@ -102,7 +102,7 @@ $$
 \end{equation}
 $$
 
-which tells us that the position of the next term of the \\(n\\)-sequence falls neatly between those of the \\(m\\)-sequence. The numbers we carry over correspond to the initial positions \\(m\\), \\(n\\) and \\(m+Q_m\\) and are also stricty different. Therefore, the subsequent term of the \\(n\\)-sequence will also lie between those of the \\(m\\)-sequence:
+which tells us that the position of the next term of the \\(n\\)-sequence falls neatly between those of the \\(m\\)-sequence. The numbers we carry over correspond to the initial positions \\(m\\), \\(n\\) and \\(m+Q_m\\) and are also strictly different. Therefore, the following term of the \\(n\\)-sequence will also lie between those of the \\(m\\)-sequence:
 
 $$
 \begin{equation}
