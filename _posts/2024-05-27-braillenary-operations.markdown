@@ -9,7 +9,7 @@ mathjax: true
 
 Braille is a language that has been fascinating me for a long time. Through its elementary grid-like symbols, it enables people with visual impairments to read by touch rather than sight. Many languages have their own type of Braille, adapted to accomodate for specific letters and symbols. Besides its regular and useful functions, however, I have found Braille to be a particularly fun cipher. Though not difficult to crack (frequency analysis will do the trick), the signs are just unrevealing enough to act as an excellent communication method between friends. They are also sufficiently simple to hide in puzzles or images. I have encountered a Braille cipher or puzzle regularly in the Dutch General Intelligence and Security Service's (AIVD) yearly <a href="https://www.aivd.nl/onderwerpen/aivd-kerstpuzzel">Christmas puzzle collection (Dutch)</a>, and I would say that by now I can confidently write in Unified English Braille (Grade 1, at the very least).
 
-Somehow, this little language keeps finding ways to pique my interest. I want to talk about a little project of mine that started out as a funny discovery, but eventually taught me about search trees in computer science, and taught me the word "snirt".
+Yet somehow, this little language keeps finding ways to pique my interest. I want to talk about a little project of mine that started out as a funny discovery, but eventually taught me about search trees in computer science, and taught me the word "snirt".
 
 <h3>A language of zeros and ones</h3>
 
