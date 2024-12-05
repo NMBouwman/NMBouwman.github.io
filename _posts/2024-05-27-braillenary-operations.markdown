@@ -28,6 +28,7 @@ The existence of these seemingly arbitrary triplets didn't feel obvious at all w
 <li>If so, what is the longest word length we can find a triplet for?</li>
 </ul></p> 
 
+<p style="text-align:center;">
 $$
 \begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
   & A & B & C & D & E & F & G & H & I & J & K & L & M & N & O & P & Q & R & S & T & U & V & W & X & Y & Z \\
@@ -85,6 +86,7 @@ Y &   &   &   &   &   &   &   &   &   & V &   & W &   &   &   &   &   &   &   & 
 Z &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & W &   &   &   &   &   &   & P &   &   &  
 \end{array}
 $$
+</p>
 
 ADROP - PINTE - SHIFT
 APHIS - PEDRO - STING
