@@ -7,9 +7,7 @@ mathjax: true
 ---
 {% include script.html %}
 
-<p style="text-align: center;"><i>Can we make valid words by applying the XOR operation to pairs of words in braille?</i></p>
-
-<h3>&#10259;&#10257;&#10247;&#10247;&#10261;</h3>
+<h3>A language of zeros and ones</h3>
 
 Braille is a language that has fascinated me for a long time. It enables people with visual impairments to be able to read through touch
 
@@ -19,14 +17,16 @@ However, aside from their simple binary nature, the signs in Braille are far fro
 
 Since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. Now, if we perform binary operations between two letters, can we get another letter out of it? An OR comparison is maybe not that interesting, since this will result in a sign with at least as many dots as the input letters. Similarly, applying an AND operation to a pair of letters will always result in a sign with an equal or lower amount of dots. What's more interesting is the XOR operation: we might end up with completely different signs depending on the exact arrangements of the dots! 
 
-Let's play around with this idea. Take for example the letter P (&#10255;). We can make another letter out of this by XORing this with the letter E (&#10257;). It essentially cancels the top-left dot and adds the middle-right one, forming the letter T (&#10270;)! In fact, the order of these three letters doesn't matter: applying the XOR operation between the T and the E returns the P again.
+Let's play around with this idea. Take for example the letter P (&#10255;). We can make another letter out of this by XORing this with the letter E (&#10257;). It essentially cancels the top-left dot and adds the middle-right one, forming the letter T (&#10270;)! In fact, the order of these three letters doesn't matter: applying the XOR operation between T and E returns P again.
 <p style="text-align: center;"><i>Check for yourself that this indeed works! How would you prove that this holds for every triplet?</i></p>
 
 The existence of these seemingly arbitrary triplets didn't feel obvious at all when I was playing around with it, but it did raise some questions:
 <p style="text-align: center;"><ul>
 <li>Can we XOR two Braille words together to make a third valid word?</li>
 <li>If so, what is the longest word length we can find a triplet for?</li>
-</ul></p> 
+</ul></p>
+
+<h3>The hunt for XOR triplets</h3>
 
 <p style="text-align:center;">
 $$
