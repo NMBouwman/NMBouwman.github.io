@@ -17,20 +17,32 @@ There is something about the Braille language that strongly appeals to me. The s
 
 However, aside from their simple binary nature, the signs in Braille are far from trivial. Rather than making use of binary counting, the letters A through J have their own little configurations in the top four dots. The rest of the letters in the alphabet are constructed by repeating the ten signs with successively one and two dots filled in on the bottom row. These repetitions are called decades. An interesting exception is the letter W (&#10298;), which has a sign from the fourth decade assigned to it.
 
-Since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. Now, if we perform binary operations between two letters, can we get another letter out of it? An OR comparison is maybe not that interesting, since this will result in a sign with at least as many dots as the input letters. Most of the signs contain two or three dots, so we want to avoid an abundance of dots in our results. Similarly, applying an AND operation to a pair of letters will always result in a sign with an equal or lower amount of dots. A more interesting candidate is the XOR operation: we might end up with completely different signs depending on the exact arrangements of dots within the input letters!
+It struck me that, since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. That is, we look at two Braille signs, but only compare them one dot at a time. If we perform binary operations between two letters, can we get another letter out of it? There are a couple of operations to consider:
+<p style="text-align: center;"><ul>
+<li>AND (&#8743;): The output is a $$1$$ if and only if both input dots are a $$1$$;</li>
+<li>OR (&#8744;): The output is a $$1$$ if at least one of the input dots is a $$1$$;</li>
+<li>XOR (&#8891;): The output is a $$1$$ if and only if exactly one of the input dots is a $$1$$.</li>
+</ul></p>
+Each of these binary operations has its associated opposite (NAND, NOR, XNOR) by negating the output.
 
 [add binary tables]
 
-Let's play around with this idea. Take for example the letter P (&#10255;). We can make another letter by XORing this with the letter E (&#10257;). This essentially cancels the top-left dot and adds the middle-right one, forming the letter T (&#10270;)! In fact, the order of these three letters doesn't matter: applying the XOR operation between T and E returns P again.
-<p style="text-align: center;"><i>Check for yourself that this is true! Does this property hold for every triplet?</i></p>
+For our purposes, an OR comparison is maybe not that interesting, since it will result in a sign with at least as many dots as the input letters. Most of the signs in Braille contain three or four dots, so we want to avoid an abundance of dots in our results. Similarly, applying an AND operation to a pair of letters will always result in a sign with an equal or lower amount of dots. A more interesting candidate is the XOR operation: we might end up with completely different signs depending on the exact arrangements of dots within the input letters!
 
-The existence of these seemingly arbitrary triplets didn't feel obvious at all when I was playing around with these operations, but it did raise some questions:
+Let's play around with this idea. Take for example the letter P (&#10255;). We can make another letter by XORing this with the letter E (&#10257;). This essentially cancels the top-left dot and adds the middle-right one, forming the letter T (&#10270;). The letters E, P and T therefore form what I call a <em>triplet</em>. In fact, the order of these three letters doesn't matter: applying the XOR operation between T and E returns P again. 
+<p style="text-align: center;"><i>Check for yourself that this is true! Does this property hold for every triplet? And does it hold for each binary operation?</i></p>
+
+The existence of these seemingly arbitrary triplets did not feel obvious at all when I was playing around with these operations, but it did raise some questions:
 <p style="text-align: center;"><ul>
 <li>Can we XOR two words in Braille to make a third word?</li>
 <li>If so, what is the longest word length we can find a triplet for?</li>
 </ul></p>
 
 <h3>The hunt for XOR triplets</h3>
+
+Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the ST is written as &#10252; and AND as &#10287;. With WITH written like &#10302;, the word WITHSTAND is neatly reduced to &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10258;&#10253;&#10270;&#10241;&#10269;&#10265;) my search.
+
+The table below shows all XOR combinations of two letters in Grade 1 UEB. As expected, it is perfectly symmetric, because the order of the inputs does not matter. In fact, there is a certain sixfold symmetry due to the triplet property shown earlier. It is interesting that the I, J, S and T form a triplet with every letter in the first and second decade.
 
 <p style="text-align:center;">
 $$
@@ -91,6 +103,18 @@ Z &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & W &   &   &   & 
 \end{array}
 $$
 </p>
+
+The next step is to compare every word in the English dictionary with every other word in the English dictionary to check if the result happens to be a word in the English dictionary. Right, that's going to take a while. Since we want to compare the words letter by letter, we can restrict ourselves to words of equal length. However, this restriction is of little use; there are over $$XXXX$$ words of nine letters, so the method described above would take at the very least $$XXXX^3$$ operations. Indeed, my poor laptop could not handle anything beyond four-letter words when I implemented this brute-force way in Python. It is clearly necessary to construct a way to compare words faster, for example by eliminating pairs of words that contain letters that do not form triplets. But how can we do this without comparing the words entirely?
+
+Thanks to a friend of mine, I stumbled upon the concept of search trees in computer science. Search trees are structures that are used to store and retrieve information efficiently by starting with a root node and branching off by certain rules. For example, a set of numbers ($$3$$, $$5$$, $$9$$, $$10$$, $$13$$, $$19$$) could be sorted by picking $$9$$ as a root and branching off to the left for smaller numbers and to the right for larger numbers. Then, the node for the right brach can be chosen to be $$13$$, which will split the two remaining large numbers to opposing sides. The structure could then look like the one in the image below. If each number is associated with some information, then the location of this information is easily retrievable by comparing the number with the nodes and tracing the tree down.
+
+[image tree]
+
+Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words at the bottom of the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORK- can then split off into WORK (end) and WORKS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
+
+[image trie]
+
+Tries provide the perfect solution to our problem. We first construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string, branching out into $$26$$ leaves; A- to Z-. The strategy is then to perform all three searches at the same time:
 
 <!--ADROP - PINTE - SHIFT
 APHIS - PEDRO - STING

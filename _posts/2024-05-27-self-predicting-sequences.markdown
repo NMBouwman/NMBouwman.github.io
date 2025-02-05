@@ -130,8 +130,10 @@ $$
 
 &nbsp;
 
+And there we go! We have constructed a sequence with our desired property by following some simple rules. Of course, we made a few arbitrary choices in our construction process. Can we do better? Let's see if we can find a formula for our sequence.
 
 <h3>From sequence to formula</h3>
+
 
 $$
 \begin{equation}
