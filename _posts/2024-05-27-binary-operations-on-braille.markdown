@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Braillenary operations"
+title:  "Binary operations on Braille"
 date:   2024-05-27 16:47:49 +0200
 categories: blogs
 mathjax: true
@@ -19,9 +19,9 @@ However, aside from their simple binary nature, the signs in Braille are far fro
 
 It struck me that, since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. That is, we look at two Braille signs, but only compare them one dot at a time. If we perform binary operations between two letters, can we get another letter out of it? There are a couple of operations to consider:
 <p style="text-align: center;"><ul>
-<li>AND (&#8743;): The output is a $$1$$ if and only if both input dots are a $$1$$;</li>
-<li>OR (&#8744;): The output is a $$1$$ if at least one of the input dots is a $$1$$;</li>
-<li>XOR (&#8891;): The output is a $$1$$ if and only if exactly one of the input dots is a $$1$$.</li>
+<li>AND (&#8743;): The output is a $1$ if and only if both input dots are a $1$;</li>
+<li>OR (&#8744;): The output is a $1$ if at least one of the input dots is a $1$;</li>
+<li>XOR (&#8891;): The output is a $1$ if and only if exactly one of the input dots is a $1$.</li>
 </ul></p>
 Each of these binary operations has its associated opposite (NAND, NOR, XNOR) by negating the output.
 
@@ -40,7 +40,7 @@ The existence of these seemingly arbitrary triplets did not feel obvious at all 
 
 <h3>The hunt for XOR triplets</h3>
 
-Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the ST is written as &#10252; and AND as &#10287;. With WITH written like &#10302;, the word WITHSTAND is neatly reduced to &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10258;&#10253;&#10270;&#10241;&#10269;&#10265;) my search.
+Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the ST is written as &#10252; and AND as &#10287;. With WITH written like &#10302;, the word WITHSTAND is neatly reduced to &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10259;&#10252;&#10270;&#10241;&#10269;&#10265;) my search.
 
 The table below shows all XOR combinations of two letters in Grade 1 UEB. As expected, it is perfectly symmetric, because the order of the inputs does not matter. In fact, there is a certain sixfold symmetry due to the triplet property shown earlier. It is interesting that the I, J, S and T form a triplet with every letter in the first and second decade.
 
