@@ -18,11 +18,10 @@ There is something about the Braille language that strongly appeals to me. The s
 However, aside from their simple binary nature, the signs in Braille are far from trivial. Rather than making use of binary counting, the letters A through J have their own little configurations in the top four dots. The rest of the letters in the alphabet are constructed by repeating the ten signs with successively one and two dots filled in on the bottom row. These repetitions are called decades. An interesting exception is the letter W (&#10298;), which has a sign from the fourth decade assigned to it.
 
 It struck me that, since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. That is, we look at two Braille signs, but only compare them one dot at a time. If we perform binary operations between two letters, can we get another letter out of it? There are a couple of operations to consider:
-<p style="text-align: center;">
 - AND (&#8743;): The output is a $1$ if and only if both input dots are a $1$;
 - OR (&#8744;): The output is a $1$ if at least one of the input dots is a $1$;
 - XOR (&#8891;): The output is a $1$ if and only if exactly one of the input dots is a $1$.
-</p>
+
 Each of these binary operations has its associated opposite (NAND, NOR, XNOR) by negating the output.
 
 [add binary tables]
@@ -33,10 +32,8 @@ Let's play around with this idea. Take for example the letter P (&#10255;). We c
 <p style="text-align: center;"><i>Check for yourself that this is true! Does this property hold for every triplet? And does it hold for each binary operation?</i></p>
 
 The existence of these seemingly arbitrary triplets did not feel obvious at all when I was playing around with these operations, but it did raise some questions:
-<p style="text-align: center;">
 - Can we XOR two words in Braille to make a third word?
 - If so, what is the longest word length we can find a triplet for?
-</p>
 
 <h3>The hunt for XOR triplets</h3>
 
