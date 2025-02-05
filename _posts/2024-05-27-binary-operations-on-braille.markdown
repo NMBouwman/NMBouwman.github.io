@@ -18,7 +18,7 @@ There is something about the Braille language that strongly appeals to me. The s
 However, aside from their simple binary nature, the signs in Braille are far from trivial. Rather than making use of binary counting, the letters A through J have their own little configurations in the top four dots. The rest of the letters in the alphabet are constructed by repeating the ten signs with successively one and two dots filled in on the bottom row. These repetitions are called decades. An interesting exception is the letter W (&#10298;), which has a sign from the fourth decade assigned to it.
 
 It struck me that, since each dot in a Braille sign is essentially just a $$0$$ or a $$1$$, we can compare letters elementwise. That is, we look at two Braille signs, but only compare them one dot at a time. If we perform binary operations between two letters, can we get another letter out of it? There are a couple of operations to consider:
-<p style="text-align: center;"><ul>
+<p style="text-align: center;">
 - AND (&#8743;): The output is a $1$ if and only if both input dots are a $1$;
 - OR (&#8744;): The output is a $1$ if at least one of the input dots is a $1$;
 - XOR (&#8891;): The output is a $1$ if and only if exactly one of the input dots is a $1$.
