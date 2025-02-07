@@ -115,7 +115,7 @@ Thanks to a friend of mine, I stumbled upon the concept of search trees in compu
 
 Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words as we traverse down the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORK- can then split off into WORK (end) and WORKS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
 
-[image trie]
+<img title="Trie example" alt="Trie example" src="/images/braille_binary_trie.png">
 
 Tries provide the perfect solution to our problem. We first construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string, branching out into $$26$$ leaves; A- to Z-. All words are constructed one letter at a time. The strategy is then to perform all three searches at the same time:
 
