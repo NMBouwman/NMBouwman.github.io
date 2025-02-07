@@ -111,8 +111,6 @@ The next step is to compare every word in the English dictionary with every othe
 
 Thanks to a friend of mine, I stumbled upon the concept of search trees in computer science. Search trees are structures that are used to store and retrieve information efficiently. The trees start with a root node on top and branch off under certain rules. For example, a set of numbers ($$3$$, $$5$$, $$9$$, $$10$$, $$13$$, $$19$$) could be sorted by picking $$9$$ as a root and branching off to the left for smaller numbers and to the right for larger numbers. Then, the node for the right brach can be chosen to be $$13$$, which will split the two remaining large numbers to opposing sides. The structure could then look like the one in the image below. If each number is associated with some information, then the location of this information is easily retrievable by comparing the number with the nodes and tracing the tree down.
 
-[image tree]
-
 Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words as we traverse down the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORD- can then split off into WORD (end) and WORDS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
 
 <img title="Trie example" alt="Trie example" src="/images/braille_binary_search_trees.png">
@@ -126,11 +124,17 @@ Tries provide the perfect solution to our problem: they allow us to perform all 
 - Check whether XORing the second letter of <strong>word 1</strong> with the second letter of <strong>word 2</strong> gives a letter that exists as a branch of the first letter of <strong>word 3</strong>;
 - If it is, then repeat the above two steps and dive deeper into <strong>word 2</strong>. If it is not, then stop the process and find the next <strong>word 1</strong>.
 
-<!--ADROP - PINTE - SHIFT
-APHIS - PEDRO - STING
-ARGIL - PIEND - SNIRT
-BIFID - CRAFT - INIAL
-TINGI - ENROL - PRISM-->
+I implemented this method in Python, making use of the `nltk.corpus.words`{:.python} dictionary from the nltk library. Because of the efficient structure, the code only took around 4 seconds to run for nine-letter words; all other word lengths took less time to search through.
+
+<h3>Results</h3>
+
+<p style="text-align: center;">
+$$\text{ADROP} \veebar \text{PINTE} = \text{SHIFT}$$
+$$\text{APHIS} \veebar \text{PEDRO} = \text{STING}$$
+$$\text{ARGIL} \veebar \text{PIEND} = \text{SNIRT}$$
+$$\text{BIFID} \veebar \text{CRAFT} = \text{INIAL}$$
+$$\text{TINGI} \veebar \text{ENROL} = \text{PRISM}$$
+</p>
 
 
 
