@@ -27,9 +27,9 @@ It struck me that each dot in a Braille sign is essentially just a $$1$$ (raised
 
 Each of these binary operations has an associated negated operation (NAND, NOR, XNOR). If we perform binary operations between two letters, can we get another letter out of it?
 
-[add binary tables]
-
 For our purposes, an OR comparison is maybe not that interesting, since it will result in a sign with at least as many dots as the input letters. Most of the signs in Braille contain three or four dots, so we want to avoid an abundance of dots in our results. Similarly, applying an AND operation to a pair of letters will always result in a sign with an equal or lower amount of dots. A more interesting candidate is the XOR operation: we might end up with completely different signs depending on the exact arrangements of dots within the input letters!
+
+<img title="XOR table" alt="XOR table" src="/images/braille_binary_XOR_table.png">
 
 Let's play around with this idea. Take for example the letter $$\text{P}$$ (&#10255;). We can make another letter by XORing this with the letter $$\text{E}$$ (&#10257;). This essentially cancels the top-left dot and adds the middle-right one, forming the letter $$\text{T}$$ (&#10270;). The letters $$\text{E}$$, $$\text{P}$$ and $$\text{T}$$ therefore form what I call a <em>triplet</em>. In fact, the order of these three letters doesn't matter: applying the XOR operation between $$\text{T}$$ and $$\text{E}$$ returns $$\text{P}$$ again. 
 <p style="text-align: center;"><i>Check for yourself that this is true! Does this property hold for every triplet? And does it hold for each binary operation?</i></p>
@@ -115,7 +115,7 @@ Thanks to a friend of mine, I stumbled upon the concept of search trees in compu
 
 Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words as we traverse down the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORD- can then split off into WORD (end) and WORDS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
 
-<img title="Trie example" alt="Trie example" src="/images/braille_binary_trie.png">
+<img title="Trie example" alt="Trie example" src="/images/braille_binary_search_trees.png">
 
 Tries provide the perfect solution to our problem: they allow us to perform all three searches through the dictionary at once. First, we construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string and branching out into $$26$$ leaves, A- to Z-. Then the strategy is as follows:
 
