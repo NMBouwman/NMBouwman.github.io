@@ -7,6 +7,8 @@ mathjax: true
 ---
 {% include script.html %}
 
+<img title="Braille binary" alt="Braille binary" src="/images/braille_binary_PET_XOR.png">
+
 Braille is a language that has been fascinating me for a long time. Through its elementary grid-like symbols, it enables people with visual impairments to read by touch rather than sight. Many languages have their own type of Braille, adapted to accomodate for specific letters and symbols. Besides its regular and useful functions, however, I have found Braille to be a particularly fun cipher. Though not difficult to crack (frequency analysis will do the trick), the signs are just unrevealing enough to act as an excellent communication method between friends. They are also sufficiently simple to hide in puzzles or images. I have encountered a Braille cipher or puzzle regularly in the Dutch General Intelligence and Security Service's (AIVD) yearly <a href="https://www.aivd.nl/onderwerpen/aivd-kerstpuzzel">Christmas puzzle collection (Dutch)</a>, and I would say that by now I can confidently write in Unified English Braille (Grade 1, at the very least).
 
 Yet somehow, this little language keeps finding ways to pique my interest. I want to talk about a little project of mine that started out as a funny discovery, but eventually taught me about search trees in computer science, and taught me the word "snirt".
@@ -39,7 +41,7 @@ The existence of these seemingly arbitrary triplets did not feel obvious at all 
 
 <h3>The hunt for XOR triplets</h3>
 
-Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the $$\text{ST}$$ is written as &#10252; and $$\text{AND}$$ as &#10287;. With $$\text{WITH}$$ written like &#10302;, the word $$\text{WITHSTAND}$$ is neatly reduced to &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10259;&#10252;&#10270;&#10241;&#10269;&#10265;) my search.
+Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the $$\text{ST}$$ is written as &#10252; and $$\text{AND}$$ as &#10287;. With $$\text{WITH}$$ written like &#10302;, the word $$\text{WITHSTAND}$$ is neatly reduced to the three signs &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10259;&#10252;&#10270;&#10241;&#10269;&#10265;) my search.
 
 The table below shows all XOR combinations of two letters in Grade 1 UEB. As expected, it is perfectly symmetric, because the order of the inputs does not matter. In fact, there is a certain sixfold symmetry due to the triplet property shown earlier. It is interesting that the $$\text{I}$$, $$\text{J}$$, $$\text{S}$$ and $$\text{T}$$ form a triplet with every letter in the first and second decade.
 
@@ -103,9 +105,9 @@ Z &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   & W &   &   &   & 
 $$
 </p>
 
-The next step is to compare every word in the English dictionary with every other word in the English dictionary to check if the result happens to be a word in the English dictionary. Right, that's going to take a while. Since we want to compare the words letter by letter, we can restrict ourselves to words of equal length. However, this restriction is of little use; there are over $$XXXX$$ words of nine letters, so the method described above would take at the very least $$XXXX^3$$ operations. Indeed, my poor laptop could not handle anything beyond four-letter words when I implemented this brute-force search in Python. It is clearly necessary to construct a way to compare words faster, for example by eliminating pairs of words that contain letters that do not form triplets. But how can we do this without comparing the words entirely?
+The next step is to compare every word in the English dictionary with every other word in the English dictionary to check if the result happens to be a word in the English dictionary. Right, that's going to take a while. Since we want to compare the words letter by letter, we can restrict ourselves to words of equal length. However, this restriction is of little use; there are over $$32400$$ words of nine letters, so the method described above would take at the very least $$32400^3 \approx 34000000000000$$ operations, multiplied by nine for the word length. Indeed, my poor laptop could not handle anything beyond four-letter words when I implemented this brute-force search in Python. It is clearly necessary to construct a way to compare words faster, for example by eliminating pairs of words that contain letters that do not form triplets. But how can we do this without comparing the words entirely?
 
-<h3>Trying with tries</h3>
+<h3>Trying tries</h3>
 
 Thanks to a friend of mine, I stumbled upon the concept of search trees in computer science. Search trees are structures that are used to store and retrieve information efficiently. The trees start with a root node on top and branch off under certain rules. For example, a set of numbers ($$3$$, $$5$$, $$9$$, $$10$$, $$13$$, $$19$$) could be sorted by picking $$9$$ as a root and branching off to the left for smaller numbers and to the right for larger numbers. Then, the node for the right brach can be chosen to be $$13$$, which will split the two remaining large numbers to opposing sides. The structure could then look like the one in the image below. If each number is associated with some information, then the location of this information is easily retrievable by comparing the number with the nodes and tracing the tree down.
 
@@ -115,7 +117,7 @@ Another type of search tree is a prefix tree, also called a <em>trie</em>. A tri
 
 [image trie]
 
-Tries provide the perfect solution to our problem. We first construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string, branching out into $$26$$ leaves; A- to Z-. The strategy is then to perform all three searches at the same time:
+Tries provide the perfect solution to our problem. We first construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string, branching out into $$26$$ leaves; A- to Z-. All words are constructed one letter at a time. The strategy is then to perform all three searches at the same time:
 
 <!--ADROP - PINTE - SHIFT
 APHIS - PEDRO - STING
