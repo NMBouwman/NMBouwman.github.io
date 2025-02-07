@@ -129,11 +129,11 @@ I implemented this method in Python, making use of the `nltk.corpus.words`{:.pyt
 <h3>Results</h3>
 
 <p style="text-align: center;">
-$$\text{ADROP} \veebar \text{PINTE} = \text{SHIFT}$$
-$$\text{APHIS} \veebar \text{PEDRO} = \text{STING}$$
-$$\text{ARGIL} \veebar \text{PIEND} = \text{SNIRT}$$
-$$\text{BIFID} \veebar \text{CRAFT} = \text{INIAL}$$
-$$\text{TINGI} \veebar \text{ENROL} = \text{PRISM}$$
+$$\text{ADROP} \; \veebar \; \text{PINTE} \; = \; \text{SHIFT}$$
+$$\text{APHIS} \; \veebar \; \text{PEDRO} \; = \; \text{STING}$$
+$$\text{ARGIL} \; \veebar \; \text{PIEND} \; = \; \text{SNIRT}$$
+$$\text{BIFID} \; \veebar \; \text{CRAFT} \; = \; \text{INIAL}$$
+$$\text{ENROL} \; \veebar \; \text{PRISM} \; = \; \text{TINGI}$$
 </p>
 
 
