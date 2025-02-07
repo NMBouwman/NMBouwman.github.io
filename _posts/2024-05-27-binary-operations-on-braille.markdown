@@ -41,7 +41,7 @@ The existence of these seemingly arbitrary triplets did not feel obvious at all 
 
 <h3>The hunt for XOR triplets</h3>
 
-Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the $$\text{ST}$$ is written as &#10252; and $$\text{AND}$$ as &#10287;. With $$\text{WITH}$$ written like &#10302;, the word $$\text{WITHSTAND}$$ is neatly reduced to the three signs &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10259;&#10252;&#10270;&#10241;&#10269;&#10265;) my search.
+Admittedly, there are multiple versions of Braille we could use to answer these questions. In English, the most widely used type of Braille is Unified English Braille (UEB) Grade 2, which contains many signs for abbreviations and groups of letters. For example, the $$\text{ST}$$ is written as &#10252; and $$\text{AND}$$ as &#10287;. With $$\text{WITH}$$ written like &#10302;, the word $$\text{WITHSTAND}$$ is neatly reduced to the three signs &#10302;&#10252;&#10287;. You can imagine that this makes the goal of comparing words elementwise very tricky, since it first requires us to exactly figure out how a word is spelled using the contractions. Instead, I decided to stick with Grade 1 UEB, which simply substitutes each letter of a word with its corresponding single-letter sign. Although it reduces the amount of potential triplets, this version was more likely to withstand (&#10298;&#10250;&#10270;&#10259;&#10254;&#10270;&#10241;&#10269;&#10265;) my search.
 
 The table below shows all XOR combinations of two letters in Grade 1 UEB. As expected, it is perfectly symmetric, because the order of the inputs does not matter. In fact, there is a certain sixfold symmetry due to the triplet property shown earlier. It is interesting that the $$\text{I}$$, $$\text{J}$$, $$\text{S}$$ and $$\text{T}$$ form a triplet with every letter in the first and second decade.
 
@@ -113,11 +113,18 @@ Thanks to a friend of mine, I stumbled upon the concept of search trees in compu
 
 [image tree]
 
-Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words as we traverse down the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORK- can then split off into WORK (end) and WORKS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
+Another type of search tree is a prefix tree, also called a <em>trie</em>. A trie splits words into prefixes, which construct words as we traverse down the trie. For example, the words WORD and WORK have a common prefix WOR-, so they trace they same path down the trie (W-, WO-, WOR-) until they split off at the final node. It is then possible to add an "end" node, which indicates that a valid word has been reached. The prefix WORD- can then split off into WORD (end) and WORDS-, which continues the trie. This is shown in the image below. Since we already split the dictionary into words of equal length in advance, we will not bother with end nodes but simply go down the entire tree.
 
 <img title="Trie example" alt="Trie example" src="/images/braille_binary_trie.png">
 
-Tries provide the perfect solution to our problem. We first construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string, branching out into $$26$$ leaves; A- to Z-. All words are constructed one letter at a time. The strategy is then to perform all three searches at the same time:
+Tries provide the perfect solution to our problem: they allow us to perform all three searches through the dictionary at once. First, we construct a trie containing all words in the English dictionary of a certain length. The root node is an empty string and branching out into $$26$$ leaves, A- to Z-. Then the strategy is as follows:
+
+- Traverse each branch down to the very bottom, to form <strong>word 1</strong>;
+- For each <strong>word 1</strong>, loop through the branches of the root node to start constructing <strong>word 2</strong>;
+- Check whether XORing the first letter of <strong>word 1</strong> with the first letter of <strong>word 2</strong> gives a valid letter as output;
+- If the output is valid, save the output branch to construct <strong>word 3</strong> and loop over the branches of the first letter of <strong>word 2</strong> to pick a second letter;
+- Check whether XORing the second letter of <strong>word 1</strong> with the second letter of <strong>word 2</strong> gives a letter that exists as a branch of the first letter of <strong>word 3</strong>;
+- If it is, then repeat the above two steps and dive deeper into <strong>word 2</strong>. If it is not, then stop the process and find the next <strong>word 1</strong>.
 
 <!--ADROP - PINTE - SHIFT
 APHIS - PEDRO - STING
