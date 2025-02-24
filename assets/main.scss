@@ -1,18 +1,17 @@
 ---
-% Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @import "minima";
 
 // Use grey background for code
-body { background-color: rgb(241, 236, 230);}
+body { background-color: #f1ece6;}
 
 pre,
 code {
   @include relative-font-size(0.8); //0.9375
   border: 1px solid $grey-color-light;
   border-radius: 3px;
-  background-color: rgb(219, 215, 212);
+  background-color: #dbd7d4;
 }
 
 h1, h2, h3, h4, h5, h6 { color: #006568; }
