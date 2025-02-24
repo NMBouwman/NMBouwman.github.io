@@ -2,9 +2,9 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid $grey-color-dark;
-  border-bottom: 1px solid $grey-color-light;
-  min-height: $spacing-unit * 1.865;
+  //border-top: 0px solid $grey-color-dark;
+  //border-bottom: 0px solid $grey-color-light;
+  //min-height: $spacing-unit * 1.865;
 
   // Positioning context for the mobile navigation icon
   position: relative;
@@ -106,8 +106,9 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  //border-top: 1px solid $grey-color-light;
   padding: $spacing-unit 0;
+  //background-color: #e2ecec;
 }
 
 .footer-heading {
@@ -204,6 +205,7 @@
 
 .post-link {
   display: block;
+  color: #006568;
   @include relative-font-size(1.5);
 }
 
@@ -252,4 +254,9 @@
       @include relative-font-size(1.125);
     }
   }
+}
+
+/* Cover Image */
+.background_tiling {
+  background-image: url('/images/Background_tiling.svg');
 }
