@@ -229,6 +229,8 @@ And with that, I can also answer the second question: there are <em>no</em> trip
 
 The patterns in Braille have surprisingly complex and fun properties. By interpreting this intriguing little language of dots as binary numbers, we can perform binary operations on each dot separately and combine two words to form one that is entirely different. When I thought of this little idea, I had no idea that it would teach me about search trees, or that the result would be so satisfying. All because of what I now consider the best letter in Braille: the $$\text{I}$$ (&#10250;). Without it, there would not have been a single (proper) triplet of words. Of course, our final result is of little direct importance, even if it makes a good fun fact to tell at room parties. However, the triplet search itself was definitely worth the patience. Perhaps sometime in the future, I'll come back to this little project to include groupsigns in the analysis. I can't yet tell whether I will find more triplets in Grade 2 Braille, but at the very least they exist in Grade 1. Doesn't that feel like a sign?
 
+<br>
+
 &#10270;&#10259;&#10241;&#10269;&#10245;&#10254;&#10240;&#10251;&#10261;&#10263;&#10240;&#10263;&#10257;&#10241;&#10265;&#10250;&#10269;&#10267; !
 
 

@@ -2,9 +2,8 @@
  * Site header
  */
 .site-header {
-  //border-top: 0px solid $grey-color-dark;
-  //border-bottom: 0px solid $grey-color-light;
-  //min-height: $spacing-unit * 1.865;
+  border-bottom: 5px solid $grey-color-light;
+  min-height: $spacing-unit * 1.865;
 
   // Positioning context for the mobile navigation icon
   position: relative;
@@ -182,6 +181,7 @@
 }
 
 .page-heading {
+  color: #006568;
   @include relative-font-size(2);
 }
 
