@@ -16,6 +16,12 @@ code {
 
 h1, h2, h3, h4, h5, h6 { color: #006568; }
 
+.side-box {
+  border-left: 5px solid #006568;
+  height: 100%;
+  padding-left: 30px;
+}
+
 .site-header {
   color: #ffffff;
   //border-top: 5px solid $grey-color-dark;
