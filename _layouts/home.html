@@ -12,7 +12,56 @@ layout: default
   <head>
 
     <style>
-    body {
+    /* Cover Image */
+    @media (min-width: 1200px) {
+      body {
+        background-image: url('/images/Background_tiling.svg');
+        background-repeat: no-repeat;
+        background-size: auto 90%;
+        background-position: right;
+          
+        background-position-y: 42px;
+        background-attachment: fixed;
+      }
+    }
+
+    /* Portrait tablets and small desktops */
+    @media (min-width: 768px) and (max-width: 991px) {
+      body {
+        background-image: url('/images/Background_tiling.svg');
+        background-repeat: no-repeat;
+        background-size: auto 90%;
+        background-position: right;
+          
+        background-position-y: 42px;
+        background-attachment: fixed;
+      }
+    }
+
+    /*Hide in Other Small Devices */
+
+
+    /* Landscape tablets and medium desktops */
+    @media (min-width: 992px) and (max-width: 1199px) {
+      body {
+        background-image: none;
+      }
+    }
+
+    /* Landscape phones and portrait tablets */
+    @media (max-width: 767px) {
+      body {
+        background-image: none;
+      }
+    }
+
+    /* Portrait phones and smaller */
+    @media (max-width: 480px) {
+      body {
+        background-image: none;
+      }
+    }
+    /*body {
       background-image: url('/images/Background_tiling.svg');
       background-repeat: no-repeat;
       background-size: auto 90%;
@@ -21,7 +70,7 @@ layout: default
       background-position-y: 42px;
       background-attachment: fixed;
       
-    }
+    }*/
     </style>
   </head>
 
