@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Bitwise operations on Braille"
-date:   2025-02-10 21:49:00 +0100
+date:   2025-02-10 22:00:00 +0100
 categories: blogs
 mathjax: true
 published: true
