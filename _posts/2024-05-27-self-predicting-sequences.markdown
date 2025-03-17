@@ -8,7 +8,9 @@ published: true
 ---
 {% include script.html %}
 
-<em>I will go into quite some mathematical detail in this post. I have tried my best to make the advanced math <u>entirely optional</u> to read. If you are intimidated by the proofs or simply not interested, don't worry about skimming over them or skipping them entirely.</em>
+<em>I will go into quite some mathematical detail in this post. I have tried my best to make the advanced math <u>entirely optional</u> to read. If you are intimidated by the proofs or simply not interested, don't worry about skimming over them or skipping them entirely. The proofs are meant to give a convincing argument and may not be rigorous.</em>
+
+
 
 <img title="Recurrence relation for the self-predicting sequence Q_n." alt="A recurrence relation for the self-predicting sequence Q_n. The left-hand side reads: Q with a subscript saying Q of n plus n. The right-hand side reads n." src="/images/self_predicting_seq_recurrence_relation.png">
 
